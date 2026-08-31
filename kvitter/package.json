@@ -11,6 +11,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite dev",
+    "test": "vitest",
+    "test:run": "vitest run",
     "dev:init": "rw-scripts dev-init",
     "preview": "vite preview",
     "worker:run": "rw-scripts worker-run",
@@ -35,6 +37,7 @@
     "@types/react-dom": "19.2.4",
     "typescript": "7.0.2",
     "vite": "~8.2.0",
+    "vitest": "^4.1.11",
     "wrangler": "4.118.0"
   }
 }
