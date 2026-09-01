@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { validateUsername } from "../validation";
 
 describe("validateUsername", () => {
   it("godtar et gyldig brukernavn", () => {
@@ -25,26 +26,3 @@ describe("validateUsername", () => {
       expect(validateUsername("ROOT").ok).toBe(false);
     });
 });
-
-type ValidationResult = { ok: true } | { ok: false; error: string };
-
-const RESERVED_USERNAMES = new Set(["admin", "root", "system", "kvitter"]);
-
-function validateUsername(username: string): ValidationResult {
-  if (username.length < 2) {
-    return { ok: false, error: "Brukernavnet er for kort" };
-  }
-
-  if (username.length > 20) {
-    return { ok: false, error: "Brukernavnet er for langt" };
-  }
-
-  if (!/^[A-Za-z0-9_]+$/.test(username)) {
-    return { ok: false, error: "Brukernavnet inneholder ugyldige tegn" };
-  }
-  if (RESERVED_USERNAMES.has(username.toLowerCase())) {
-    return { ok: false, error: "Brukernavn er reservert" };
-  }
-
-  return { ok: true };
-}
