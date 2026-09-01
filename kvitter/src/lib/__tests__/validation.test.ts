@@ -18,7 +18,33 @@ describe("validateUsername", () => {
     () => {
       expect(validateUsername("ola@normann!").ok).toBe(false);
     });
+
+  (it("avviser reserverte navn, uavhengig av store bokstaver"),
+    () => {
+      expect(validateUsername("Admin").ok).toBe(false);
+      expect(validateUsername("ROOT").ok).toBe(false);
+    });
 });
-function validateUsername(arg0: string): any {
-  throw new Error("Function not implemented.");
+
+type ValidationResult = { ok: true } | { ok: false; error: string };
+
+const RESERVED_USERNAMES = new Set(["admin", "root", "system", "kvitter"]);
+
+function validateUsername(username: string): ValidationResult {
+  if (username.length < 2) {
+    return { ok: false, error: "Brukernavnet er for kort" };
+  }
+
+  if (username.length > 20) {
+    return { ok: false, error: "Brukernavnet er for langt" };
+  }
+
+  if (!/^[A-Za-z0-9_]+$/.test(username)) {
+    return { ok: false, error: "Brukernavnet inneholder ugyldige tegn" };
+  }
+  if (RESERVED_USERNAMES.has(username.toLowerCase())) {
+    return { ok: false, error: "Brukernavn er reservert" };
+  }
+
+  return { ok: true };
 }
