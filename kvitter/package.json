@@ -27,7 +27,8 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-server-dom-webpack": "19.2.8",
-    "rwsdk": "1.7.2"
+    "rwsdk": "1.7.2",
+    "undici": "^8.10.1"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.50.0",
@@ -35,9 +36,14 @@
     "@types/node": "~26.1.2",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
-    "typescript": "7.0.2",
+    "typescript": "5.9.3",
     "vite": "~8.2.0",
     "vitest": "^4.1.11",
     "wrangler": "4.118.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "undici": ">=7.29.0"
+    }
   }
 }

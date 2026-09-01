@@ -19,3 +19,6 @@ describe("validateUsername", () => {
       expect(validateUsername("ola@normann!").ok).toBe(false);
     });
 });
+function validateUsername(arg0: string): any {
+  throw new Error("Function not implemented.");
+}
