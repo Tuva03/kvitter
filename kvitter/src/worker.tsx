@@ -62,5 +62,8 @@ export default defineApp([
         tidspunkt: new Date().toISOString(),
       });
     }),
+    route("/api/health", () => {
+      return Response.json({ status: "ok" });
+    }),
   ]),
 ]);
